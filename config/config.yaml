@@ -1,0 +1,82 @@
+# Multi-Agent System Configuration
+
+system:
+  name: "Smart Building & Farm Management System"
+  version: "1.0.0"
+  mode: "local"  # local or cloud
+
+# LLM Configuration
+llm:
+  provider: "local"  # local, openai, anthropic
+  local_model: "qwen-1.8b"  # For M1 stability
+  device: "mps"  # mps, cuda, cpu
+  temperature: 0.3
+  max_tokens: 512
+
+# Agent Configuration
+agents:
+  surveillance:
+    name: "Surveillance Agent"
+    description: "Monitors camera feeds and detects security anomalies"
+    tools:
+      - camera_analyzer
+      - motion_detector
+      - alert_sender
+    priority: high
+    
+  access_control:
+    name: "Access Control Agent"
+    description: "Manages entry/exit authorization and tracks access patterns"
+    tools:
+      - rfid_reader
+      - facial_recognition
+      - access_logger
+      - door_controller
+    priority: critical
+    
+  environment:
+    name: "Environmental Monitoring Agent"
+    description: "Monitors and optimizes environmental conditions"
+    tools:
+      - sensor_reader
+      - hvac_controller
+      - irrigation_controller
+      - data_analyzer
+    priority: medium
+
+# State Management
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0
+  decode_responses: true
+  
+# Tools Configuration
+tools:
+  camera:
+    fps: 1  # Process 1 frame per second
+    resolution: [640, 480]
+    confidence_threshold: 0.7
+    
+  sensors:
+    read_interval: 5.0  # seconds
+    
+  access:
+    max_failed_attempts: 3
+    lockout_duration: 300  # seconds
+
+# Cost Optimization
+cost_tracking:
+  enabled: true
+  local_cost_per_token: 0.0  # Free local inference
+  cloud_api_costs:
+    gpt4_input: 0.00003  # per token
+    gpt4_output: 0.00006
+    claude_input: 0.000008
+    claude_output: 0.000024
+
+# Logging
+logging:
+  level: "INFO"
+  file: "data/logs/system.log"
+  rotation: "100 MB"
