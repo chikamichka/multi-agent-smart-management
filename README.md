@@ -455,7 +455,7 @@ MIT License - see LICENSE file
 
 ## 📧 Contact
 
-**Author**: [imene boukhelkhal]  
+**Author**: imene boukhelkhal 
 **GitHub**: [@chikamichka](https://github.com/chikamichka)  
 **Email**: boukhelkhalimene@gmail.com
 
